@@ -5,7 +5,7 @@ import java.util.Arrays;
 public class ArrayReverse {
 	public static void reverseArray(int[] ar){
 		int left=0, right=ar.length-1; //divided array into two parts
-		while(left<right)  //till the time left element is less than right element
+		while(left<right)  //till the time left index is less than right index
 		{
 			int temp=ar[left]; //store the left element into temp
 			ar[left]=ar[right]; //store the right element into left
