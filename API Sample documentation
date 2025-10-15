@@ -1,0 +1,226 @@
+API Sample Collection Documentation
+This collection demonstrates sample API requests for user management using the reqres.in API.
+It covers user retrieval, creation, update, deletion, and registration scenarios, including both successful and error cases.
+Each request is documented below with method, URL, parameters, body, and expected responses.
+
+
+
+Endpoints
+1. Get user data
+Method: GET
+URL: https://reqres.in/api/users?{{localVariable}}
+Description: Retrieves a list of users. The localVariable query parameter can be used for pagination (e.g., page=2).
+Query Parameters:
+{{localVariable}} (string, optional): Query string for pagination or filtering (e.g., page=2).
+
+Request Body: None
+Pre-request Script: Sets localVariable to page=2 by default.
+Tests:
+Status code is 200
+Response time is within 500ms
+
+Expected Response:
+200 OK: JSON array of user objects
+
+
+
+
+
+2. user not found-404
+Method: GET
+URL: https://reqres.in/api/users/23
+Description: Retrieves details of user with ID 23. This user does not exist, so a 404 is expected.
+Request Body: None
+Expected Response:
+404 Not Found: {} (empty JSON object)
+
+
+
+
+
+3. Create user
+Method: POST
+URL: https://reqres.in/api/users
+Description: Creates a new user with the provided name and job.
+Request Body:
+
+
+JSON
+
+
+
+
+
+
+
+
+  {
+  "name": "Jaya",
+  "job": "leader"
+  }
+
+
+Tests:
+Validates Content-Length header
+Validates Content-Type is application/json; charset=utf-8
+
+Expected Response:
+201 Created: JSON object with user details, including id and createdAt
+
+
+
+
+
+4. Unsuccessful registration 400
+Method: POST
+URL: {{Global_var}}/register
+Description: Attempts to register a user with missing password, resulting in a 400 error.
+Request Body:
+
+
+JSON
+
+
+
+
+
+
+
+
+  {
+  "email": "sydney@fife"
+  }
+
+
+Expected Response:
+400 Bad Request: { "error": "Missing password" }
+
+
+
+
+
+5. SuccessFul registration 200
+Method: POST
+URL: {{Global_var}}/register
+Description: Registers a user successfully with email and password.
+Request Body:
+
+
+JSON
+
+
+
+
+
+
+
+
+  {
+  "email": "eve.holt@reqres.in",
+  "password": "pistol"
+  }
+
+
+Tests:
+Response is an object
+id is a number
+token is a non-empty string
+
+Expected Response:
+200 OK: { "id": , "token": }
+
+
+
+
+
+6. updating job value
+Method: PUT
+URL: https://reqres.in/api/users/2
+Description: Updates the job for user with ID 2.
+Request Body:
+
+
+JSON
+
+
+
+
+
+
+
+
+  {
+  "name": "morpheus",
+  "job": "zion resident"
+  }
+
+
+Expected Response:
+200 OK: JSON object with updated user info and updatedAt timestamp
+
+
+
+
+
+7. updating value patch
+Method: PATCH
+URL: https://reqres.in/api/{{env_var}}
+Description: Partially updates user data. The env_var variable should be set to the appropriate endpoint (e.g., users/2).
+Request Body:
+
+
+JSON
+
+
+
+
+
+
+
+
+  {
+  "name": "morpheus",
+  "job": "zion resident"
+  }
+
+
+Expected Response:
+200 OK: JSON object with updated fields and updatedAt timestamp
+
+
+
+
+
+8. delete user
+Method: DELETE
+URL: https://reqres.in/api/users/23
+Description: Deletes user with ID 23.
+Request Body: None
+Expected Response:
+204 No Content
+
+
+
+
+
+9. New Request
+Method: HEAD
+URL: https://reqres.in/api/users/2
+Description: Sends a HEAD request to check headers for user with ID 2.
+Request Body: None
+Expected Response:
+200 OK: Response headers only, no body
+
+
+
+
+
+Variables
+{{Global_var}}: Base URL for registration endpoints
+{{env_var}}: Used for PATCH endpoint path
+{{localVariable}}: Used for query parameters in GET requests
+
+
+
+
+
