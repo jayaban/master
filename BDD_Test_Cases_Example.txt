@@ -1,0 +1,19 @@
+Scenario: As a user, i want to generate my account
+Given: application URL with valid credentials
+when: user logs in with valid credentials
+And: navigates to MainMenu->Services-> User Account -> Create
+And: fill mandatory user account details
+Then:user account gets created & account creation message appears
+
+
+Scenario: As a site manager, I want to add a teams training module to the OLA calendar for all dates the course is to be run.
+Given: user logged in with valid credentials, has been added to the desired roles & course is created.
+When: user navigates to main menu>top right> click on setting gear
+Then: setting menu gets opened.
+and: Click on courses and category
+then: Select course & Click on view
+And: Select the F2F training to which you want to add a OLA calender.
+then: Click on Add event
+And: Under specify session details > select rooms > Go to virtual room > Add Virtual room link, Fill in all required details and click on Save changes button.
+Then: Go to Home (Dashboard)> In upcoming courses block Go to calendar > Check calendar the added Teams training should appear.
+
